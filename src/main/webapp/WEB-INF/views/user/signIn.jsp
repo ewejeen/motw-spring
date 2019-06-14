@@ -64,6 +64,12 @@
 				</ul>
 			</div>
 			
+			 <%-- <div id="google_id_login" style="text-align: center">
+			    <a href="${google_url}">
+			      구글 로그인
+			    </a>
+			  </div> --%>
+			
 			<form id="signInFormRSA" name="signInFormRSA" action="signIn.mo" method="post">
 	            <input type="hidden" name="securedName" id="securedName" value="" />
 	            <input type="hidden" name="securedPw" id="securedPw" value="" />

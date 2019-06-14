@@ -21,7 +21,23 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="org.motw.vo" />
+	<!-- google Class Bean설정 추가 -->
+	<!-- 클라이언트ID와 보안비밀 세팅 -->
+	<bean id="googleConnectionFactory" class="org.springframework.social.google.connect.GoogleConnectionFactory">
+		<constructor-arg value="630113702977-6uihdq73s8bum09997enk2259k70f9u6.apps.googleusercontent.com" />
+		<constructor-arg value="arURara-kcLA8dGBTSdIm372" />
+	</bean>
+	
+	<!-- 승인된 자바스크립트 원본과 승인된 리디렉션 URI -->
+	<bean id="googleOAuth2Parameters" class="org.springframework.social.oauth2.OAuth2Parameters">
+		<property name="scope" value="https://www.googleapis.com/auth/plus.login" />
+		<property name="redirectUri" value="http://localhost:8080/motw" />
+	</bean>
+	<!-- google Class Bean설정 추가 -->
+	
+	
+	
+	<context:component-scan base-package="org.motw" />
 	
 	
 	
