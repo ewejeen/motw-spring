@@ -52,10 +52,10 @@ public class UserController {
 	}
 	
 	//구글 callback 호출
-	@RequestMapping(value="oauth2callback.do", method={RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/googleSignInCallback", method={RequestMethod.GET, RequestMethod.POST})
 	public String gogoleCallback(Model model, @RequestParam String code) throws IOException{
 		System.out.println("구글 로그인 성공!");
-		return "/";
+		return "index";
 	}
 	
 	/*

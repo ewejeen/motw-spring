@@ -66,7 +66,7 @@
                     <li>
                         <input type="button" value="Sign in" onclick="validateEncryptedForm()" />
                     </li>
-					<span class="noacc">Don't have an account? <a class="noacc" href="signUp.jsp">Sign up now!</a></span>
+					<span class="noacc">Don't have an account? <a class="noacc" href="signUp">Sign up now!</a></span>
 				</ul>
 			</div>
 			
