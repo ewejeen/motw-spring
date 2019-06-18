@@ -4,7 +4,10 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpSession;
 
+import org.motw.user.util.BaseProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.social.google.api.Google;
+import org.springframework.social.google.api.plus.Person;
 import org.springframework.social.google.connect.GoogleConnectionFactory;
 import org.springframework.social.oauth2.GrantType;
 import org.springframework.social.oauth2.OAuth2Operations;
@@ -26,6 +29,10 @@ public class UserController {
 	
 	@Autowired
 	private OAuth2Parameters gooogleOAuth2Parameters;
+	
+	@Autowired
+	private BaseProvider baseProvider;
+	
 	
 	
 	@RequestMapping("/signUp")
@@ -55,6 +62,12 @@ public class UserController {
 	@RequestMapping(value="/googleSignInCallback", method={RequestMethod.GET, RequestMethod.POST})
 	public String gogoleCallback(Model model, @RequestParam String code) throws IOException{
 		System.out.println("구글 로그인 성공!");
+		Google google = baseProvider.getGoogle();
+		Person googleUser = google.plusOperations().getGoogleProfile();
+		System.out.println(googleUser.getAccountEmail());
+		System.out.println(googleUser.getDisplayName());
+		System.out.println(googleUser.getImageUrl());
+		
 		return "index";
 	}
 	

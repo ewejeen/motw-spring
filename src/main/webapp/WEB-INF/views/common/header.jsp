@@ -29,8 +29,8 @@
 					</c:if>
 					<div class="userMenu">
 						<c:if test="${sessionId==null }">
-							<a href="user/signUp">Sign Up</a>					
-							<a href="user/signIn">Sign In</a>
+							<a href="/user/signUp">Sign Up</a>					
+							<a href="/user/signIn">Sign In</a>
 							<a href="about.jsp">About Developer</a>
 						</c:if>
 						<c:if test="${sessionId!=null }">

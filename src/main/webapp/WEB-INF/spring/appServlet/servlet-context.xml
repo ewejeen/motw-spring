@@ -35,8 +35,8 @@
 	</beans:bean>
 	<!-- //google Class Bean설정 추가 -->
 	
-	<context:component-scan base-package="org.motw" />
 	
+	<context:component-scan base-package="org.motw" />
 	
 	
 </beans:beans>

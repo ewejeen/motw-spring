@@ -70,6 +70,7 @@
 				</ul>
 			</div>
 			
+			
 			<div id="google_id_login" style="text-align: center">
 				<a href="${google_url}">구글 로그인</a>
 			</div>
