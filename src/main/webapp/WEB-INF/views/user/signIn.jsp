@@ -6,16 +6,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/signIn.css" media="all" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/user/signIn.css" media="all" />
 <title>#MOTW :: Sign In</title>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 
-<script src="${pageContext.request.contextPath }/js/rsa/jsbn.js"></script>
-<script src="${pageContext.request.contextPath }/js/rsa/rsa.js"></script>
-<script src="${pageContext.request.contextPath }/js/rsa/prng4.js"></script>
-<script src="${pageContext.request.contextPath }/js/rsa/rng.js"></script>
-<script src="${pageContext.request.contextPath }/js/rememberMe.js"></script>
-<script src="${pageContext.request.contextPath }/js/signInFn.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/rsa/jsbn.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/rsa/rsa.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/rsa/prng4.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/rsa/rng.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/rememberMe.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/signInFn.js"></script>
 <script>
 	if(${sessionId ne null }){
 		alert('You are already signed in.');
@@ -31,13 +31,19 @@
 </head>
 <body>
 	<div id="wrap">
-		<jsp:include page="common/header.jsp" />
+		<jsp:include page="../common/header.jsp" />
+		
+		<script>
+			$('document').ready(function(){
+				$('.header').hide();		
+			});
+		</script>
 		
 		<div class="signIn">
 			<div class="signInForm">
 				<ul>
 				    <li class="top">
-                        <img src="${pageContext.request.contextPath }/img/logo_v3.png" alt="logo">
+                        <img src="${pageContext.request.contextPath }/resources/img/logo_v3.png" alt="logo">
 				        <h1>Sign In</h1>    
 				    </li>
 					
@@ -64,11 +70,9 @@
 				</ul>
 			</div>
 			
-			 <%-- <div id="google_id_login" style="text-align: center">
-			    <a href="${google_url}">
-			      구글 로그인
-			    </a>
-			  </div> --%>
+			<div id="google_id_login" style="text-align: center">
+				<a href="${google_url}">구글 로그인</a>
+			</div>
 			
 			<form id="signInFormRSA" name="signInFormRSA" action="signIn.mo" method="post">
 	            <input type="hidden" name="securedName" id="securedName" value="" />

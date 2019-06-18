@@ -23,11 +23,20 @@
         	signUpFn();
         }
 	}
+	
 </script>
 </head>
 <body>
    <div id="wrap">
 		<jsp:include page="../common/header.jsp" />
+		
+		
+		<script>
+			$('document').ready(function(){
+				$('.header').hide();		
+			});
+		</script>	
+		
 		
 		<div class="signUp">
 			<form action="signUp.mo" method="post" name="signUpForm" id="signUpForm">
@@ -59,7 +68,8 @@
                         <!-- input 하나라서 엔터키 submit이 자동으로 적용됨. 방지 위해 hidden input 추가 -->
 			            <input style="visibility: hidden; width: 0px;">
                     </li>
-					<span class="acc">Already have an account? <a class="acc" href="signInForm.mo">Sign in!</a></span>
+                    <li>구글</li>
+					<span class="acc">Already have an account? <a class="acc" href="signIn">Sign in!</a></span>
 				</ul>
 			</form>
 		</div>

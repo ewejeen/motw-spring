@@ -1,10 +1,19 @@
 package org.motw.user.controller;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.google.connect.GoogleConnectionFactory;
+import org.springframework.social.oauth2.GrantType;
+import org.springframework.social.oauth2.OAuth2Operations;
 import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/user")
@@ -25,26 +34,32 @@ public class UserController {
 	}
 	
 	@RequestMapping("/signIn")
-	public String signIn(){
+	public String signIn(Model model, HttpSession session) throws Exception {
+		//구글 code 발행
+		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
+		
+		//로그인페이지 이동 url 생성
+		String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, gooogleOAuth2Parameters);
+		
+		model.addAttribute("google_url", url);
+		
 		return dir+"/signIn";
 	}
 	
+	@RequestMapping(value="/signInProc", method=RequestMethod.POST)
+	public String signInProc(){
+		return "/";
+	}
+	
+	//구글 callback 호출
+	@RequestMapping(value="oauth2callback.do", method={RequestMethod.GET, RequestMethod.POST})
+	public String gogoleCallback(Model model, @RequestParam String code) throws IOException{
+		System.out.println("구글 로그인 성공!");
+		return "/";
+	}
+	
 	/*
-	 //로그인 페이지로 이동하는 컨트롤러
-	  @RequestMapping(value = "login.do")
-	  public String initLogin(Model model, HttpSession session) throws Exception {
-
-	  	 구글code 발행 
-	  	OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
-
-	     로그인페이지 이동 url생성 
-	  	String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
-
-	  	model.addAttribute("google_url", url);
-
-	  	 생성한 인증 URL을 Model에 담아서 전달 
-	  	return "page1/login.all";
-	  }
+	 
 	  
 	  
 	  
