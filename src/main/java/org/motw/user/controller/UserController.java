@@ -2,9 +2,12 @@ package org.motw.user.controller;
 
 import java.io.IOException;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.motw.user.service.UserService;
 import org.motw.user.util.BaseProvider;
+import org.motw.user.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.google.api.Google;
 import org.springframework.social.google.api.plus.Person;
@@ -24,6 +27,10 @@ public class UserController {
 	
 	String dir = "user";
 	
+	@Resource
+	UserService userService;
+	
+	/*    소셜 로그인   */
 	@Autowired
 	private GoogleConnectionFactory googleConnectionFactory;
 	
@@ -32,7 +39,7 @@ public class UserController {
 	
 	@Autowired
 	private BaseProvider baseProvider;
-	
+	/*   //소셜 로그인   */
 	
 	
 	@RequestMapping("/signUp")
@@ -41,8 +48,18 @@ public class UserController {
 	}
 	
 	@RequestMapping("/signUpProc")
-	public void signUpProc(){
+	public String signUpProc(UserVO userVO) throws Exception {
+		String page = "";
+		int result = userService.insertUser(userVO);
+		System.out.println(result);
 		
+		if(result == 1){
+			page = dir+"/signUpOk";
+		} else{
+			page = dir+"/signUp";			
+		}
+		
+		return page;
 	}
 	
 	
