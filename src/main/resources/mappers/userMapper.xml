@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="userMapper">
+	<!-- 모든 회원 정보 보기 -->
+	<select id="selectAllUsers" resultType="userVO">
+		SELECT 
+			username, password, email, 
+			DATE_FORMAT(regTime, '%Y-%m-%d %H:%i:%s')
+		FROM
+			user
+		ORDER BY
+			regTime desc
+	</select>
+
+	<!-- 한 회원 정보 보기 -->
+	<select id="selectUser" resultType="userVO">
+		SELECT 
+			username, password, email,
+			DATE_FORMAT(regTime, '%Y-%m-%d %H:%i:%s')
+		FROM
+			user
+		WHERE
+			username = #{username}
+	</select>
+ 
+ 	<!-- 회원 가입 -->
+ 	<insert id="insertUser" parameterType="userVO">
+ 		INSERT INTO 
+ 			user (username, password, email)
+ 		VALUES
+ 			(#{email}, #{username}, #{password})
+ 	</insert>
+ 	
+ 	<!-- 아이디 중복 체크 -->
+ 	<select id="nameCheck" resultType="int">
+ 		SELECT
+ 			COUNT(*)
+ 		FROM
+ 			user
+ 		WHERE
+ 			username = #{username}
+ 	</select>
+
+ 	<!-- 이메일 중복 체크 -->
+ 	<select id="emailCheck" resultType="int">
+ 		SELECT
+ 			COUNT(*)
+ 		FROM
+ 			user
+ 		WHERE
+ 			email = #{email}
+ 	</select>
+ 	
+ 	<!-- 로그인 -->
+    <select id="loginUser" resultType="int">
+    	SELECT
+    		COUNT(*)
+    	FROM
+    		user
+    	WHERE
+    		username = #{username} 
+    		AND
+    		password = #{password}
+    </select>
+    
+    <!-- 아이디 찾기 -->
+    <select id="findName" resultType="userVO">
+    	SELECT 
+    		username
+    	FROM
+    		user
+    	WHERE
+    		email = #{email}
+    </select>
+    
+    <!-- 비밀번호 찾기 -->
+    <select id="findPw" resultType="userVO">
+    	SELECT
+    		password
+    	FROM
+    		user
+    	WHERE
+    		username = #{username}
+    		AND
+    		email = #{email}
+    </select>
+    
+    <!-- 회원 탈퇴 -->
+    <delete id="deleteUser" parameterType="userVO">
+    	DELETE FROM
+    		user
+    	WHERE
+    		username = #{username}
+    		AND
+    		password = #{password}
+    </delete>
+    
+    <!-- 회원 수정 -->
+    <update id="modifyUser" parameterType="userVO">
+    	UPDATE
+    		user
+    	SET
+    		password = #{password},
+    		email = #{email}
+    	WHERE
+    		username = #{username}
+    </update>
+</mapper>

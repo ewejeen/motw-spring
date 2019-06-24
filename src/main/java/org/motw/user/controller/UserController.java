@@ -40,6 +40,12 @@ public class UserController {
 		return dir+"/signUp";
 	}
 	
+	@RequestMapping("/signUpProc")
+	public void signUpProc(){
+		
+	}
+	
+	
 	@RequestMapping("/signIn")
 	public String signIn(Model model, HttpSession session) throws Exception {
 		//구글 code 발행
@@ -62,11 +68,11 @@ public class UserController {
 	@RequestMapping(value="/googleSignInCallback", method={RequestMethod.GET, RequestMethod.POST})
 	public String gogoleCallback(Model model, @RequestParam String code) throws IOException{
 		System.out.println("구글 로그인 성공!");
-		Google google = baseProvider.getGoogle();
+		/*Google google = baseProvider.getGoogle();
 		Person googleUser = google.plusOperations().getGoogleProfile();
 		System.out.println(googleUser.getAccountEmail());
 		System.out.println(googleUser.getDisplayName());
-		System.out.println(googleUser.getImageUrl());
+		System.out.println(googleUser.getImageUrl());*/
 		
 		return "index";
 	}
