@@ -2,18 +2,18 @@ package org.motw.user.vo;
 
 public class UserVO {
 	private String username;
-	private String userPw;
-	private String userEmail;
+	private String password;
+	private String email;
 	private String regTime;
 
 	public UserVO() {
 	}
 
-	public UserVO(String username, String userPw, String userEmail, String regTime) {
+	public UserVO(String username, String password, String email, String regTime) {
 		super();
 		this.username = username;
-		this.userPw = userPw;
-		this.userEmail = userEmail;
+		this.password = password;
+		this.email = email;
 		this.regTime = regTime;
 	}
 
@@ -25,27 +25,28 @@ public class UserVO {
 		this.username = username;
 	}
 
-	public String getUserPw() {
-		return userPw;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setUserPw(String userPw) {
-		this.userPw = userPw;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public String getUserEmail() {
-		return userEmail;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getRegTime() {
 		return regTime;
 	}
-	
+
 	public void setRegTime(String regTime) {
 		this.regTime = regTime;
 	}
+
 }

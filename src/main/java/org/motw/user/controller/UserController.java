@@ -1,6 +1,8 @@
 package org.motw.user.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -17,9 +19,11 @@ import org.springframework.social.oauth2.OAuth2Operations;
 import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/user")
@@ -47,7 +51,33 @@ public class UserController {
 		return dir+"/signUp";
 	}
 	
-	@RequestMapping("/signUpProc")
+	// 아이디 중복확인
+	@RequestMapping(value = "/nameCheck", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> nameCheck(@RequestBody String username) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		int result = 0;
+		if(userService.nameCheck(username) == 1){
+			result = 1;
+		}
+		map.put("result", result);
+		return map;
+	}
+
+	// 이메일 중복확인
+	@RequestMapping(value = "/emailCheck", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> emailCheck(@RequestBody String email) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		int result = 0;
+		if(userService.emailCheck(email) == 1){
+			result = 1;
+		}
+		map.put("result", result);
+		return map;
+	}
+	
+	@RequestMapping(value = "/signUpProc", method = RequestMethod.POST)
 	public String signUpProc(UserVO userVO) throws Exception {
 		String page = "";
 		int result = userService.insertUser(userVO);

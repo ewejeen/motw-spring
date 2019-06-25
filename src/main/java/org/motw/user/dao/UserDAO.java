@@ -21,4 +21,16 @@ public class UserDAO implements UserService {
 		return sqlSession.insert(NAMESPACE + ".insertUser", userVO);
 	}
 	
+	// 아이디 중복확인
+	@Override
+	public int nameCheck(String username) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".nameCheck", username);
+	}
+
+	// 이메일 중복확인
+	@Override
+	public int emailCheck(String email) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".emailCheck", email);
+	}
+	
 }

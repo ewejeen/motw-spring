@@ -10,8 +10,8 @@
 	<div class="header">
 		<div class="topHeader">
 			<ul>
-				<li class="menu m1" onclick="location.href='index.jsp'">　</li>
-				<li class="menu"><a href="movieList.mv">This Week</a></li>
+				<li class="menu m1" onclick="location.href='/'">　</li>
+				<li class="menu"><a href="/">This Week</a></li>
 				<li class="menu"><a href="cList.bo">Community</a></li>
 				<c:if test="${sessionId==null }">
 					<li class="menu"><a href="movieCartListS.mv">My Movies</a></li>

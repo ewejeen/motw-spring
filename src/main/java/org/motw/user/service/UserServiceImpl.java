@@ -17,4 +17,18 @@ public class UserServiceImpl implements UserService {
 	public int insertUser(UserVO userVO) throws Exception {
 		return userDAO.insertUser(userVO);
 	}
+	
+	// 아이디 중복확인
+	@Override
+	public int nameCheck(String username) throws Exception {
+		return userDAO.nameCheck(username);
+	}
+
+	// 이메일 중복확인
+	@Override
+	public int emailCheck(String email) throws Exception {
+		return userDAO.emailCheck(email);
+	}
+	
+	
 }

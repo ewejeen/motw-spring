@@ -6,10 +6,10 @@
 <meta charset="UTF-8">
 <title>#MOTW :: Sign Up</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/user/signUp.css">
-<script src="${pageContext.request.contextPath }/resources/js/pwCheck.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/nameCheck.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/emailCheck.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/signUpFn.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/user/pwCheck.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/user/nameCheck.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/user/emailCheck.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/user/signUpFn.js"></script>
 <script>
 	if(${sessionId ne null }){
 		alert('You are already signed in.');
@@ -30,7 +30,7 @@
    <div id="wrap">
 		<jsp:include page="../common/header.jsp" />
 		
-		
+		<!-- 나중에 지우기 -->
 		<script>
 			$('document').ready(function(){
 				$('.header').hide();		
@@ -39,7 +39,7 @@
 		
 		
 		<div class="signUp">
-			<form action="signUp.mo" method="post" name="signUpForm" id="signUpForm">
+			<form action="/user/signUpProc" method="post" name="signUpForm" id="signUpForm">
 				<ul>
 				    <li class="top">
                         <img src="${pageContext.request.contextPath }/resources/img/logo_v3.png" alt="logo">
@@ -52,15 +52,15 @@
 					</li>
 					<li>
                         <span>Password</span><span class="desc">*8 - 20 characters including letters and numbers</span>
-				        <input type="password" name="userPw" id="userPw" maxlength="30" onkeyup="pwCheck()" onkeydown="enterkey()">
+				        <input type="password" name="password" id="password" maxlength="30" onkeyup="pwCheck()" onkeydown="enterkey()">
 					</li>
 					<li>
                         <span>Re-enter Password</span>
-				        <input type="password" id="userPw2" maxlength="30" onkeyup="pwCheck()" onkeydown="enterkey()">
+				        <input type="password" id="password2" maxlength="30" onkeyup="pwCheck()" onkeydown="enterkey()">
 					</li>
 					<li>
                         <span>Email</span>
-				        <input type="text" name="userEmail" maxlength="30" id="userEmail" onkeyup="emailCheck()" onkeydown="enterkey()">
+				        <input type="text" name="email" maxlength="30" id="email" onkeyup="emailCheck()" onkeydown="enterkey()">
 				        <input type="hidden" name="emailCh" id="emailCh" value="unchecked"/>
 					</li>
                     <li>
@@ -69,7 +69,7 @@
 			            <input style="visibility: hidden; width: 0px;">
                     </li>
                     <li>구글</li>
-					<span class="acc">Already have an account? <a class="acc" href="signIn">Sign in!</a></span>
+					<span class="acc">Already have an account? <a class="acc" href="/user/signIn">Sign in!</a></span>
 				</ul>
 			</form>
 		</div>
