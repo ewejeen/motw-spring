@@ -13,7 +13,7 @@ public class UserDAO implements UserService {
 	@Inject
 	private SqlSession sqlSession;
 	
-	private static final String NAMESPACE = "org.motw.mappers.userMapper";
+	private static final String NAMESPACE = "mappers.UserMapper";
 	
 	// 회원 가입
 	@Override

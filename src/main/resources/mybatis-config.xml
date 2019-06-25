@@ -11,4 +11,5 @@
         <typeAliases>
         	<typeAlias type="org.motw.user.vo.UserVO" alias="userVO"/>
         </typeAliases>
+        
     </configuration>
